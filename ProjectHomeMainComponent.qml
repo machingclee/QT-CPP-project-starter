@@ -1,8 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import com.company.backend 1.0
-
-
+import QtQuick.Controls.Material 2.12
+import QtQuick.Layouts 1.12
 Item {
     Item {
         id: states
@@ -75,25 +75,30 @@ Item {
     Column {
         id: column
         y: 0
-        width: 252
+        width: 600
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
 
         Rectangle {
             width: 200
             height: globalStates.topPadding
-            color: "#ffffff"
+            color: "transparent"
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
-        Row {
+        RowLayout {
             id: grid
+            Layout.fillWidth: true
             anchors.horizontalCenter: parent.horizontalCenter
-            spacing: 8
+            spacing: 12
+
             TextField {
                 id: projectNameTextField
                 placeholderText: qsTr("Project Name")
                 selectByMouse: true
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignVCenter
+                Layout.rightMargin: 20
             }
 
             Button {
@@ -104,6 +109,7 @@ Item {
                         actions.addProject(name.trim())
                     }
                 }
+
             }
 
             Button {
@@ -117,7 +123,7 @@ Item {
         Rectangle {
             width: 200
             height: globalStates.topPadding
-            color: "white"
+            color: "transparent"
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -137,47 +143,53 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     height:54
 
-                    Row{
+                    RowLayout{
                         width: 280
                         anchors.horizontalCenter: parent.horizontalCenter
 
                         Rectangle{
                             height: 40
+                            color:"transparent"
                             width: parent.width - selectButton.width
+                            Layout.rightMargin: 20
+                            border.width: 1
+                            border.color: "#c2c2c2"
+                            radius: 5
+                            Layout.topMargin: 2
+
+
                             Label{
                                 id: projectNameLabels
                                 text: projectName
                                 anchors.verticalCenter:  parent.verticalCenter
+                                padding: 10
+
                             }
                         }
 
-                        Rectangle{
-                            height: 40
 
-                            width: selectButton.width
-                            Row{
-                                spacing: 8
-                                Button{
-                                    id: selectButton
-                                    height:30
-                                    text: "Select"
-                                    anchors.verticalCenter:  parent.verticalCenter
-                                    onClicked: {
-                                        actions.selectProject(uuid, projectName)
-                                    }
-                                }
-
-
-                                Button{
-                                    id: deleteButton
-                                    height:30
-                                    text:"Delete"
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    onClicked: {
-                                        actions.removeAtIndex(index)
-                                    }
+                        RowLayout{
+                            spacing: 12
+                            Layout.alignment: Qt.AlignVCenter
+                            Button{
+                                id: selectButton
+                                text: "Select"
+                                anchors.verticalCenter:  parent.verticalCenter
+                                onClicked: {
+                                    actions.selectProject(uuid, projectName)
                                 }
                             }
+
+
+                            Button{
+                                id: deleteButton
+                                text:"Delete"
+                                anchors.verticalCenter: parent.verticalCenter
+                                onClicked: {
+                                    actions.removeAtIndex(index)
+                                }
+                            }
+
                         }
                     }
                 }

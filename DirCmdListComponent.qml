@@ -154,13 +154,13 @@ Item {
                 id: addProjectListButton
                 text: "Add new project directory"
                 width:200
-                height:36
+
                 onClicked: actions.addProjectListAndCommand()
             }
 
             Button {
                 id: saveButton
-                height: 36
+
                 text: qsTr("Save")
                 onClicked: {
                     actions.saveClicked()
@@ -171,7 +171,7 @@ Item {
 
             Button {
                 id: executeButton
-                height: 36
+
                 text: qsTr("Execute")
                 onClicked: {
                     actions.executeAll()

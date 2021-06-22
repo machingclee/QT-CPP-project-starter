@@ -27,3 +27,4 @@ HEADERS += \
     backend.h
 
 QT += concurrent
+QT += quickcontrols2

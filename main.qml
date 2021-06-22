@@ -1,5 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Controls.Material 2.12
+
 
 ApplicationWindow {
     id: window
@@ -7,6 +9,7 @@ ApplicationWindow {
     height: 480
     visible: true
     title: qsTr("Project Starter")
+    font.capitalization: Font.MixedCase
 
     Item{
         id: globalStates
