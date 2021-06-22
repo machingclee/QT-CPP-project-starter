@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import com.company.backend 1.0
-
+import QtQuick.Layouts 1.12
 
 Item {
     Item {
@@ -16,6 +16,8 @@ Item {
     ProjectsHomeDAO{
         id: projectsHomeDao
     }
+
+
 
     Item{
         id: actions
@@ -74,8 +76,7 @@ Item {
 
     Column {
         id: column
-        y: 0
-        width: 252
+        width: 400
         height: parent.height
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -90,6 +91,7 @@ Item {
             id: grid
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: 8
+
             TextField {
                 id: projectNameTextField
                 placeholderText: qsTr("Project Name")
@@ -122,77 +124,88 @@ Item {
         }
 
 
-        Column {
-            id: projectListViewColumn
-            width: 200
-            height: parent.height - projectListViewColumn.y
+        GroupBox{
+            title: qsTr("Projects")
+            width: parent.width + 20
+            height: parent.height - 100
             anchors.horizontalCenter: parent.horizontalCenter
+            Item {
+                id: projectListViewColumn
+                width: parent.width
+                height: parent.height - projectListViewColumn.y
+                anchors.horizontalCenter: parent.horizontalCenter
+                Component{
+                    id: projectNameDelegate
 
-            Component{
-                id: projectNameDelegate
+                    Item{
+                        id: container
+                        width: parent.width
+
+                        height:50
+
+                        RowLayout{
+                            width: 280
 
 
-                Item{
-                    id: container
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height:54
+                            Rectangle{
+                                height: 40
+                                width: parent.width - selectButton.width
 
-                    Row{
-                        width: 280
-                        anchors.horizontalCenter: parent.horizontalCenter
-
-                        Rectangle{
-                            height: 40
-                            width: parent.width - selectButton.width
-                            Label{
-                                id: projectNameLabels
-                                text: projectName
-                                anchors.verticalCenter:  parent.verticalCenter
-                            }
-                        }
-
-                        Rectangle{
-                            height: 40
-
-                            width: selectButton.width
-                            Row{
-                                spacing: 8
-                                Button{
-                                    id: selectButton
-                                    height:30
-                                    text: "Select"
+                                Label{
+                                    id: projectNameLabels
+                                    text: projectName
                                     anchors.verticalCenter:  parent.verticalCenter
-                                    onClicked: {
-                                        actions.selectProject(uuid, projectName)
-                                    }
                                 }
+                            }
+
+                            Rectangle{
+                                height: 40
+
+                                width: selectButton.width
+                                RowLayout{
+                                    spacing: 8
+                                    Button{
+                                        id: selectButton
+                                        height:30
+                                        text: "Select"
+
+                                        anchors.verticalCenter:  parent.verticalCenter
+                                        onClicked: {
+                                            actions.selectProject(uuid, projectName)
+                                        }
+                                    }
 
 
-                                Button{
-                                    id: deleteButton
-                                    height:30
-                                    text:"Delete"
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    onClicked: {
-                                        actions.removeAtIndex(index)
+                                    Button{
+                                        id: deleteButton
+                                        height:30
+
+                                        text:"Delete"
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        onClicked: {
+                                            actions.removeAtIndex(index)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
+
+                ListView{
+                    id: projectListView
+                    visible: true
+                    anchors.fill: parent
+                    width: parent.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    model: states.projectListModel
+                    delegate: projectNameDelegate
+                }
+
+
             }
-
-            ListView{
-                id: projectListView
-                visible: true
-                anchors.fill: parent
-                model: states.projectListModel
-                delegate: projectNameDelegate
-            }
-
-
         }
+
 
     }
 

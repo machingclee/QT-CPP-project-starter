@@ -244,7 +244,7 @@ Item {
 
                 Button{
                     id: deleteButton
-                    text: "del"
+                    text: "Del"
                     width: 40
                     onClicked: {
                         try{
