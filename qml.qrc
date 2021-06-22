@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+    </qresource>
+    <qresource prefix="/ProjectHomePage">
+        <file>ProjectsHomeDAO.qml</file>
+        <file>ProjectsHome.ui.qml</file>
+        <file>ProjectHomeMainComponent.qml</file>
+    </qresource>
+    <qresource prefix="/ProjectDetailPage">
+        <file>ProjectDetailForm.ui.qml</file>
+        <file>ProjectDetailDAO.qml</file>
+        <file>DirCmdListComponent.qml</file>
+    </qresource>
+</RCC>
