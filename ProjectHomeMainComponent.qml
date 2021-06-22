@@ -153,25 +153,29 @@ Item {
 
                         Rectangle{
                             height: 40
+
                             width: selectButton.width
-
-                            Button{
-                                id: selectButton
-                                height:30
-                                text: "Select"
-                                anchors.verticalCenter:  parent.verticalCenter
-                                onClicked: {
-                                    actions.selectProject(uuid, projectName)
+                            Row{
+                                spacing: 8
+                                Button{
+                                    id: selectButton
+                                    height:30
+                                    text: "Select"
+                                    anchors.verticalCenter:  parent.verticalCenter
+                                    onClicked: {
+                                        actions.selectProject(uuid, projectName)
+                                    }
                                 }
-                            }
 
-                            Button{
-                                id: deleteButton
-                                height:30
-                                text:"Del"
-                                anchors.verticalCenter: parent.verticalCenter
-                                onClicked: {
-                                    actions.removeAtIndex(index)
+
+                                Button{
+                                    id: deleteButton
+                                    height:30
+                                    text:"Delete"
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    onClicked: {
+                                        actions.removeAtIndex(index)
+                                    }
                                 }
                             }
                         }
