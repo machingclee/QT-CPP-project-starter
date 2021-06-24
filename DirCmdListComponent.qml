@@ -101,7 +101,7 @@ Item {
                 const dirPath = dirPaths[i]
                 const cmd = commands[i]
                 combinedCmds.push("cd " + dirPath +
-                                  " && " + 'code ' + '"'+dirPath+'"' +
+                                  " && " + 'code ' + "'"+dirPath+"'" +
                                   " && " + cmd)
             }
 
@@ -123,7 +123,8 @@ Item {
     FolderDialog{
         id: folderDialog
         onAccepted: {
-            const targetFolderPath = folderDialog.folder.toString().replace("file:///","")
+            console.log("folderDialog.folder.toString()",folderDialog.folder.toString())
+            const targetFolderPath = folderDialog.folder.toString().replace("file://","")
             actions.folderPathIsChosen(targetFolderPath)
         }
     }

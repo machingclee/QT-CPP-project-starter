@@ -1,15 +1,15 @@
 #ifndef BACKEND_H
 #define BACKEND_H
 
+#include <QDebug>
+#include <QFuture>
 #include <QObject>
+#include <QProcess>
+#include <QThreadPool>
+#include <QUuid>
+#include <QtConcurrent>
 #include <stdio.h>
 #include <stdlib.h>
-#include <QDebug>
-#include <QThreadPool>
-#include <QtConcurrent>
-#include <QFuture>
-#include <QUuid>
-
 class Backend : public QObject
 {
     Q_OBJECT
@@ -22,8 +22,8 @@ public:
 signals:
 
 public slots:
-    void executeShellCommand(QString command);
-    void executeShellCommands(QStringList commands);
+    void executeShellCommand(const QString& command);
+    void executeShellCommands(const QStringList& commands);
     QString generateUUId();
 
 };
