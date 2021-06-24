@@ -100,8 +100,8 @@ Item {
             for (var i=0; i<length; i++){
                 const dirPath = dirPaths[i]
                 const cmd = commands[i]
-                combinedCmds.push("cd " + dirPath +
-                                  " && " + 'code ' + "'"+dirPath+"'" +
+                combinedCmds.push("cd " + "'"+dirPath +"'"+
+                                  " && " + 'code ' + "'"+ dirPath +"'"+
                                   " && " + cmd)
             }
 

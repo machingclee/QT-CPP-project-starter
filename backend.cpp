@@ -16,21 +16,19 @@ void Backend::executeShellCommand(const QString& command)
 
     QString augmentedCmd = QString("\"export PATH=/usr/local/bin:$PATH") + " && " + command + "\"";
 
-    //        echo "~/my_executable arg1 arg2" > /tmp/tmp.sh ; chmod +x /tmp/tmp.sh ; open -a Terminal /tmp/tmp.sh ; rm /tmp/tmp.sh
-
     sh = "/bin/sh";
     tmpFile = generateUUId() + ".sh";
     args << "-c"
          << QString("echo " + augmentedCmd + " > /tmp/%1 && chmod +x /tmp/%1 && open -a Terminal /tmp/%1").arg(tmpFile);
 
-    process.start(sh, args); //Starts execution of command
-    process.waitForFinished(); //Waits for execution to complete
+    process.start(sh, args);
+    process.waitForFinished();
 
     rmScriptProcess.start(sh, QStringList() << QString("rm /tmp/%1").arg(tmpFile));
     rmScriptProcess.waitForFinished();
 
-    QString stdOut = process.readAllStandardOutput(); //Reads standard output
-    QString stdError = process.readAllStandardError(); //Reads standard error
+    QString stdOut = process.readAllStandardOutput();
+    QString stdError = process.readAllStandardError();
 
     qInfo() << "StdOut" << stdOut;
     qInfo() << "StdError" << stdError;
