@@ -1,5 +1,4 @@
 #include "backend.h"
-using namespace std;
 
 Backend::Backend(QObject* parent)
     : QObject(parent)
@@ -14,7 +13,8 @@ void Backend::executeShellCommand(const QString& command)
     QString sh;
     QStringList args;
 
-    QString augmentedCmd = QString("\"export PATH=/usr/local/bin:$PATH") + " && " + command + "\"";
+    QString augmentedCmd = "\"" + QString(+"export PATH=/usr/local/bin:$PATH") + QString(" && ") + command + "\"";
+    qInfo() << "the augmentedCmd" << augmentedCmd;
 
     sh = "/bin/sh";
     tmpFile = generateUUId() + ".sh";
@@ -35,13 +35,24 @@ void Backend::executeShellCommand(const QString& command)
     return;
 }
 
-void Backend::executeShellCommands(const QStringList& commands)
+void Backend::executeShellCommands(const QJsonArray& commands)
 {
     qInfo() << "commands" << commands;
-
-    for (const QString& cmd : commands)
+    foreach (const QJsonValue& value, commands)
     {
-        QtConcurrent::run(this, &Backend::executeShellCommand, cmd);
+        QJsonObject obj = value.toObject();
+        QString dirPath = obj.value("dirPath").toString();
+        QString cmd = obj.value("cmd").toString();
+
+        QString finalCommand;
+        finalCommand = QString("cd ") + QString("'") + dirPath + QString("'");
+        finalCommand = finalCommand + QString(" && code -n ") + QString("'") + dirPath + QString("'");
+        if (!cmd.isEmpty() && !cmd.isNull())
+        {
+            finalCommand = QString(finalCommand + " && " + cmd);
+        }
+
+        QtConcurrent::run(this, &Backend::executeShellCommand, finalCommand);
     }
 }
 

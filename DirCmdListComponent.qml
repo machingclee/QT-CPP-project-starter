@@ -1,5 +1,5 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.12
+import QtQuick 2.2
+import QtQuick.Controls 2.2
 import QtQuick.Dialogs 1.2
 import Qt.labs.platform 1.0
 import com.company.backend 1.0
@@ -100,9 +100,7 @@ Item {
             for (var i=0; i<length; i++){
                 const dirPath = dirPaths[i]
                 const cmd = commands[i]
-                combinedCmds.push("cd " + "'"+dirPath +"'"+
-                                  " && " + 'code ' + "'"+ dirPath +"'"+
-                                  " && " + cmd)
+                combinedCmds.push({dirPath, cmd})
             }
 
             backend.executeShellCommands(combinedCmds)

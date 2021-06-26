@@ -27,5 +27,10 @@ HEADERS += \
     backend.h
 
 QT += concurrent
-QT += quick
+QT += qml
 
+mac {
+  CONFIG += x86
+  CONFIG += c++11
+  #Disable these for development
+}
