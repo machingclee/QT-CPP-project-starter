@@ -14,7 +14,7 @@ class Backend : public QObject
 {
     Q_OBJECT
 
-//    Q_PROPERTY(string selectedProjectName READ name WRITE setName NOTIFY nameChanged)
+    //    Q_PROPERTY(string selectedProjectName READ name WRITE setName NOTIFY nameChanged)
 
 public:
     explicit Backend(QObject *parent = nullptr);

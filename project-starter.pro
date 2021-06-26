@@ -1,6 +1,6 @@
-QT += quick
 
-CONFIG += c++11 app_bundle sdk_no_version_check
+
+CONFIG += c++11 app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -27,3 +27,5 @@ HEADERS += \
     backend.h
 
 QT += concurrent
+QT += quick
+
