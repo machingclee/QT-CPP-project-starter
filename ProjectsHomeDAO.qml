@@ -57,6 +57,7 @@ Item {
 
     function clearAll(){
         const db = root.getDb()
+
         try{
             db.transaction(function(tx){
                 tx.executeSql('DELETE FROM ProjectList ')

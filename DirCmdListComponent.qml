@@ -57,7 +57,7 @@ Item {
         }
         onSaveClicked: {
             const uuid = globalStates.selectedProjectUuid
-            projectDetailDAO.clearProjectList(uuid)
+            projectDetailDAO.clearProjectDetailList(uuid)
             const {success, error} = projectDetailDAO.saveProjectList(states.projectListModel)
 
             if(error){
@@ -81,7 +81,7 @@ Item {
             }
         }
         onClearAllProjects: {
-            projectDetailDAO.clearProjectList()
+            projectDetailDAO.clearProjectDetailList()
         }
 
         onExecuteAll: {

@@ -46,7 +46,12 @@ void Backend::executeShellCommands(const QJsonArray& commands)
 
         QString finalCommand;
         finalCommand = QString("cd ") + QString("'") + dirPath + QString("'");
-        finalCommand = finalCommand + QString(" && code -n ") + QString("'") + dirPath + QString("'");
+
+        if (!dirPath.isEmpty() && !dirPath.isNull())
+        {
+            finalCommand = finalCommand + QString(" && code -n ") + QString("'") + dirPath + QString("'");
+        }
+
         if (!cmd.isEmpty() && !cmd.isNull())
         {
             finalCommand = QString(finalCommand + " && " + cmd);

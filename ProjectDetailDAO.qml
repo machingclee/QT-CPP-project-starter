@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.12
 import QtQuick.LocalStorage 2.12
 
 
@@ -29,8 +29,8 @@ Item {
                 const result = tx.executeSql('SELECT * FROM ProjectDetailList AS pl WHERE pl.uuid='+"'"+uuid+"'");
                 const rows = result.rows
                 for(var i=0; i<rows.length; i++){
-                    const {projectDir, projectInitCommand} = rows.item(i)
-                    resultJson.push({ projectDir, projectInitCommand })
+                    const {projectDir, projectInitCommand, uuid} = rows.item(i)
+                    resultJson.push({ projectDir, projectInitCommand, uuid})
                 }
             })
             return { success: true, result: resultJson }
@@ -57,7 +57,7 @@ Item {
         }
     }
 
-    function clearProjectList(uuid){
+    function clearProjectDetailList(uuid){
         const db = root.getDb()
         try{
             db.transaction(function(tx){
