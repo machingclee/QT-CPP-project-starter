@@ -1,5 +1,6 @@
 
 
+
 CONFIG += c++11 app_bundle
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -32,5 +33,9 @@ QT += qml
 mac {
   CONFIG += x86
   CONFIG += c++11
+  RC_ICON = appicon.icon
   #Disable these for development
 }
+
+
+

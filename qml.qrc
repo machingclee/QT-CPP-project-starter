@@ -12,4 +12,7 @@
         <file>ProjectDetailDAO.qml</file>
         <file>DirCmdListComponent.qml</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>appicon.png</file>
+    </qresource>
 </RCC>
